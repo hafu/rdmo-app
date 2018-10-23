@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+{% load i18n compress staticfiles core_tags %}
+
+{% block head %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'core/css/header.scss' %}" />
+{% endcompress %}
+{% compress js %}
+<script type="text/javascript" src="{% static 'core/js/header.js' %}" ></script>
+{% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+<header>
+    <div class="hidden-xs">
+        <div class="header-image header-image-0 visible">
+            <img src="{% static 'core/img/header/hydro.jpg' %}"></img>
+            <p class="attribution">
+                &copy; A. Künzelmann/UFZ
+            </p>
+        </div>
+        <div class="header-image header-image-1">
+            <img src="{% static 'core/img/header/heat-waves.jpg' %}"></img>
+            <p class="attribution">
+                &copy; A. Künzelmann/UFZ
+            </p>
+        </div>
+        <div class="header-image header-image-2">
+            <img src="{% static 'core/img/header/ocean-eddies.jpg' %}"></img>
+            <p class="attribution">
+                &copy; HZG
+            </p>
+        </div>
+        <div class="header-image header-image-3">
+            <img src="{% static 'core/img/header/permafrost.jpg' %}"></img>
+            <p class="attribution">
+                &copy; B. Radosavljevic/AWI
+            </p>
+        </div>
+        <div class="header-image header-image-4">
+            <img src="{% static 'core/img/header/hzg-prandt.jpg' %}"></img>
+            <p class="attribution">
+                &copy; HZG
+            </p>
+        </div>
+    </div>
+    <div class="container header-text">
+
+        <h1>RDMO</h1>
+
+        <div class="row">
+            <div class="col-md-9">
+                <p>{% trans "A tool to support the planning, implementation, and organisation of research data management." %}</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container page">
+    <div class="row">
+        <div class="col-md-9">
+            {% get_current_language as lang %}
+            {% if lang == 'en' %}
+            {% include 'core/home_text_en.html' %}
+            {% elif lang == 'de' %}
+            {% include 'core/home_text_de.html' %}
+            {% endif %}
+        </div>
+
+        <div class="col-md-3">
+            <h3>{% trans 'Login' %}</h3>
+
+            {% include 'account/login_form.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
